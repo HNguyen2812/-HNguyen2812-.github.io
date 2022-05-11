@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Fashion blog project</title>
+     <!--the embedded stylesheet with various style changes-->
+    <style type="text/css">
+        /*My plan is to create a background picture that can scroll*/
+        body {
+            height: 100%;
+            margin: 0%;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        .bg-image {
+     /* Full height */
+        height: 80%; 
+     /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: translate(-50%, -50%);
+    }  
+    /* Image used */
+    .img { background-image: url("https://www.missmalini.com/content/images/wp-content/uploads/2020/03/shutterstock_1362961772.jpeg");
+    }
+</style>
+</head>
+<!--Body starts here-->
+<body>
+    <div class="bg-image img"></div>
+    <h1> Why not executing? </h1>
+<!--not sure why but the codes can't be executed!-->
+</body>
+</html>
