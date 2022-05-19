@@ -66,7 +66,7 @@
         }
 
         .container p span.typed-text {
-            font-weight: normal;
+            font-weight: Bold;
             color: #FFBF00;
         }
 
@@ -81,7 +81,7 @@
         .container p span.cursor.typing {
             animation: none;
         }
-
+  /*Drake: this is the color of the blinker by the text: Drake Monfregola is*/
         @keyframes blink {
             0% {
                 background-color: rgb(97, 96, 96);
@@ -199,7 +199,7 @@
     <!--attach image-->
     <div class="img-container">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1513px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
-            style="width:65%" alt="starry photo." title="Starry Photo">
+            style="width:55%" alt="starry photo." title="Starry Photo">
     </div>
 
 
@@ -213,7 +213,7 @@
     <!-- Drakes own hidden text-->
     <div class="showhidden">
         <p>Hover over this text to find out the inspiration behind this Artwork!</p>
-        <p class="defaulthidden"><span style="color:rgb(186, 178, 64)">I was inspired by how the sky always seemed pitch
+        <p class="defaulthidden"><span style="color:rgb(255,191,0)">I was inspired by how the sky always seemed pitch
                 black except on summer nights. I wanted to paint what I saw, swirly dots moving in a circle on a blue
                 night sky. I am certain that what im witnessing is an alien invasion.</span></p>
     </div>
@@ -226,7 +226,7 @@
     <br>
 
 
-    <h3>More about the Artist</h3>
+    <h3><p align= "margin-left">More about the Artist</p></h3>
     <table border="1" width="500">
         <!--the rows are equally split to three sections, hence the 33% I think-->
         <!--Mark's comment: yes-->
@@ -244,9 +244,14 @@
 
     <hr>
 
+
+<!--Drake: this typing text is my contribution to this Java Assignment-->
     <div class="container">
-        <p>DM is <span class="typed-text"></span><span class="cursor">&nbsp;</span></p>
+        <p>Drake Monfregola is <span class="typed-text"></span><span class="cursor">&nbsp;</span></p>
       </div>
+
+
+
 
     <!--Noura: I added this alert sign so the reader knows they've successfully read this page-->
     <div class="alert alert-primary" role="alert">
@@ -254,8 +259,51 @@
         atists!!
     </div>
 
+<!-----------------------------------------------------Java--------------------------------------------------------->
 
+    <script>
+const typedTextSpan = document.querySelector(".typed-text");
+const cursorSpan = document.querySelector(".cursor");
 
+const textArray = ["the best artist", "a real pioneer", "breaking traditional art norms", "very unique"];
+const typingDelay = 100;
+const erasingDelay = 30;
+const newTextDelay = 520; // Delay between current and next text
+let textArrayIndex = 0;
+let charIndex = 0;
+
+function type() {
+  if (charIndex < textArray[textArrayIndex].length) {
+    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+    typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+    charIndex++;
+    setTimeout(type, typingDelay);
+  } 
+  else {
+    cursorSpan.classList.remove("typing");
+  	setTimeout(erase, newTextDelay);
+  }
+}
+
+function erase() {
+	if (charIndex > 0) {
+    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+    typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
+    charIndex--;
+    setTimeout(erase, erasingDelay);
+  } 
+  else {
+    cursorSpan.classList.remove("typing");
+    textArrayIndex++;
+    if(textArrayIndex>=textArray.length) textArrayIndex=0;
+    setTimeout(type, typingDelay + 1100);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function() { // On DOM Load initiate the effect
+  if(textArray.length) setTimeout(type, newTextDelay + 250);
+});
+</script>
 </body>
 
 </html>
