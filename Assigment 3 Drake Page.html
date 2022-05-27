@@ -81,7 +81,8 @@
         .container p span.cursor.typing {
             animation: none;
         }
-  /*Drake: this is the color of the blinker by the text: Drake Monfregola is*/
+
+        /*Drake: this is the color of the blinker by the text: Drake Monfregola is*/
         @keyframes blink {
             0% {
                 background-color: rgb(97, 96, 96);
@@ -139,11 +140,24 @@
             font-weight: bold;
             text-transform: uppercase;
             text-decoration: underline;
+
         }
 
-       
+        /*more Stuff for java. this is for switching paintings */
 
-      
+
+        .closed {
+            display: none;
+        }
+
+        .open {
+            display: none;
+        }
+
+        .active {
+            display: block;
+            cursor: pointer;
+        }
     </style>
 </head>
 <!--This is the Navigation bar up top. This was worked on by Drake-->
@@ -197,14 +211,18 @@
     <h3>MY <span>BACKYARD</span> ON A GOOD DAY</h3>
 
     <!--attach image-->
-    <div class="img-container">
+    <div class="img-container closed active">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1513px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
             style="width:55%" alt="starry photo." title="Starry Photo">
+    </div>
+    <div class="img-container open">
+        <img src="https://tiqets-cdn.s3.eu-west-1.amazonaws.com/wordpress/blog/wp-content/uploads/2021/04/07094257/929px-Starry_Night_Over_the_Rhone.jpg"
+            style="width:55%" alt="starry photo." title="Tarry Photo">
     </div>
 
 
     <h3> <a>About the Artist</a></h3>
-    
+
     <!--this is a list with bullet points-->
     <ul>
         <li><strong>Name:</strong> Drake Monfregola</li>
@@ -213,7 +231,7 @@
     <!-- Drakes own hidden text-->
     <div class="showhidden">
         <p>Hover over this text to find out the inspiration behind this Artwork!</p>
-        <p class="defaulthidden"><span style="color:rgb(255,191,0)">I was inspired by how the sky always seemed pitch
+        <p class="defaulthidden"><span style="color:rgb(179, 136, 7)">I was inspired by how the sky always seemed pitch
                 black except on summer nights. I wanted to paint what I saw, swirly dots moving in a circle on a blue
                 night sky. I am certain that what im witnessing is an alien invasion.</span></p>
     </div>
@@ -226,7 +244,9 @@
     <br>
 
 
-    <h3><p align= "margin-left">More about the Artist</p></h3>
+    <h3>
+        <p align="margin-left">More about the Artist</p>
+    </h3>
     <table border="1" width="500">
         <!--the rows are equally split to three sections, hence the 33% I think-->
         <!--Mark's comment: yes-->
@@ -245,10 +265,10 @@
     <hr>
 
 
-<!--Drake: this typing text is my contribution to this Java Assignment-->
+    <!--Drake: this typing text is my contribution to this Java Assignment-->
     <div class="container">
         <p>Drake Monfregola is <span class="typed-text"></span><span class="cursor">&nbsp;</span></p>
-      </div>
+    </div>
 
 
 
@@ -259,51 +279,62 @@
         atists!!
     </div>
 
-<!-----------------------------------------------------Java--------------------------------------------------------->
+    <!-----------------------------------------------------Java--------------------------------------------------------->
 
     <script>
-const typedTextSpan = document.querySelector(".typed-text");
-const cursorSpan = document.querySelector(".cursor");
+        const typedTextSpan = document.querySelector(".typed-text");
+        const cursorSpan = document.querySelector(".cursor");
 
-const textArray = ["the best artist", "a real pioneer", "breaking traditional art norms", "very unique"];
-const typingDelay = 100;
-const erasingDelay = 30;
-const newTextDelay = 520; // Delay between current and next text
-let textArrayIndex = 0;
-let charIndex = 0;
+        const textArray = ["the best artist", "a real pioneer", "breaking traditional art norms", "very unique"];
+        const typingDelay = 100;
+        const erasingDelay = 30;
+        const newTextDelay = 520; // Delay between current and next text
+        let textArrayIndex = 0;
+        let charIndex = 0;
 
-function type() {
-  if (charIndex < textArray[textArrayIndex].length) {
-    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-    typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
-    charIndex++;
-    setTimeout(type, typingDelay);
-  } 
-  else {
-    cursorSpan.classList.remove("typing");
-  	setTimeout(erase, newTextDelay);
-  }
-}
+        function type() {
+            if (charIndex < textArray[textArrayIndex].length) {
+                if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+                typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, typingDelay);
+            }
+            else {
+                cursorSpan.classList.remove("typing");
+                setTimeout(erase, newTextDelay);
+            }
+        }
 
-function erase() {
-	if (charIndex > 0) {
-    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-    typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
-    charIndex--;
-    setTimeout(erase, erasingDelay);
-  } 
-  else {
-    cursorSpan.classList.remove("typing");
-    textArrayIndex++;
-    if(textArrayIndex>=textArray.length) textArrayIndex=0;
-    setTimeout(type, typingDelay + 1100);
-  }
-}
+        function erase() {
+            if (charIndex > 0) {
+                if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+                typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, erasingDelay);
+            }
+            else {
+                cursorSpan.classList.remove("typing");
+                textArrayIndex++;
+                if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+                setTimeout(type, typingDelay + 1100);
+            }
+        }
 
-document.addEventListener("DOMContentLoaded", function() { // On DOM Load initiate the effect
-  if(textArray.length) setTimeout(type, newTextDelay + 250);
-});
-</script>
+        document.addEventListener("DOMContentLoaded", function () { // On DOM Load initiate the effect
+            if (textArray.length) setTimeout(type, newTextDelay + 250);
+        });
+
+        const closedPaint = document.querySelector('.closed')
+        const openPaint = document.querySelector('.open')
+
+        //adding the event listener for two paintings
+        closedPaint.addEventListener('click', () => {
+            if (openPaint.classList.contains('open')) { openPaint.classList.add('active'); closedPaint.classList.remove('active') }
+        });
+        openPaint.addEventListener('click', () => {
+            if (closedPaint.classList.contains('closed')) { closedPaint.classList.add('active'); openPaint.classList.remove('active') }
+        });
+    </script>
 </body>
 
 </html>
