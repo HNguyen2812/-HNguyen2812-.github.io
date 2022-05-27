@@ -2,13 +2,10 @@
 <html>
 
 <head>
-    <!--This is the link to bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title> HTML Practice Group 4 Max</title>
-    <!--here is the externally linked stylesheet-->
     <link rel="icon" type="image/png" href="https://i.pinimg.com/564x/ef/63/10/ef6310e3372e689e72863c199d7699fa.jpg">
-    <!--here is the embedded stylesheet with various style changes-->
     <style type="text/css">
         body {
             background: rgb(10, 7, 14);
@@ -43,7 +40,6 @@
             font-weight: 900;
         }
 
-        /*Noura: this is to put the images in a grid and add an effect when you hover over it*/
         .img-container {
             float: left;
             width: 33%;
@@ -52,7 +48,6 @@
             filter: alpha (opacity=50);
         }
 
-        /*Noura: using selector :hover to change visibility of the image*/
         .img-container:hover {
             opacity: 1.0;
             filter: alpha(opacity=100);
@@ -64,7 +59,6 @@
             display: table;
         }
 
-        /* Noura:hidden text that shows up when you hover over the text with your mouse*/
         div.showhidden p.defaulthidden {
             visibility: hidden;
         }
@@ -73,14 +67,12 @@
             visibility: visible;
         }
 
-        /*Max: a specific tag like <a> say, you want all <a> tags to be styled in a particular way */
         a {
             font-weight: bold;
             text-transform: uppercase;
             text-decoration: underline;
         }
 
-        /*Max: or specific unique elements that need to be styled a certain way through using the id="" attribute and #id in the stylesheet.*/
         #first {
             font-family: 'Courier New', Courier, monospace;
             ;
@@ -89,7 +81,6 @@
             font-size: 1.3em;
         }
 
-        /*Max: trying to add boxes here*/
         .boxes {
             background-color: #e2deca;
             padding: 30px;
@@ -99,7 +90,6 @@
             border: 5px solid rgb(147, 148, 104);
         }
 
-        /*Max:Characteristics for cantainer. This has to be placed before setting the grid or it will not work.*/
         .container {
             width: 200%;
             padding-right: 15px;
@@ -114,7 +104,6 @@
             border: 3px solid #857c6e;
         }
 
-        /*Max: Characteristics for colums. I am still not sure what flex-basis and flex-grow does.*/
         .col {
             flex-basis: 0;
             flex-grow: 1;
@@ -125,7 +114,6 @@
             padding-left: 15px;
         }
 
-        /*Max:Characteristics for rows. Clomuns must be placed in rows.*/
         .row {
             width: 100%;
             display: flex;
@@ -135,7 +123,6 @@
             justify-content: center;
         }
 
-        /*Max:Characteristics flexboxes to work properly*/
         .media {
             align-items: flex-start;
             display: flex;
@@ -146,76 +133,101 @@
             padding-left: 20px;
             align-self: center;
         }
+
+        #demo {
+            color: black;
+        }
     </style>
-    <!--Starting to work on JavaScript assigment here-->
+    <!-- Max: Starting to work on JavaScript assigment here-->
     <script>
+        // Max: This is a function for a button to chage text inside from when clicked
         function rateimage() {
-            document.getElementById("demo").innerHTML = "10/10 rating)";
+            //Max: default value for the variable is this text, if the value is default it cahges to "10/10"
+            if (ratingcache === "Click here to give this painting a rating") {
+                ratingcache = "10/10"
+            }
+            //Max: And if not it chages back to deafult 
+            else {
+                ratingcache = "Click here to give this painting a rating";
+            }
+            //Max: this line tells it to dislpay whatever value is in the variable at the moment. 
+            document.getElementById("demo").innerHTML = ratingcache;
+
+        }
+        //Max: Declare a variable for button
+        let ratingcache = "Click here to give this painting a rating";
+        function onLoad() {
+            var imagename = "selfportrait";
+            //Max: Trying to add arrays here, they do nothing I added them for fun 
+            let testarray = ["painting", "picture", "array", "vanghog"];
+            let imagerating = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            //Max: This one is used in table at the end. 
+            let artistinfo = [];
+            artistinfo['Name'] = 'Maxim Capcanari';
+            artistinfo['Age'] = '19';
+            artistinfo['numberofpaintings'] = '1.546';
+
+            document.getElementById("tablename").innerHTML = artistinfo.Name;
+            document.getElementById("tableAge").innerHTML = artistinfo.Age;
+            document.getElementById("tablenumber").innerHTML = artistinfo.numberofpaintings;
         }
     </script>
 </head>
-<!--This is the Navigation bar up top. This was worked on by Drake-->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="Assigment 3.html"><img
-            src="https://cdn.shopify.com/s/files/1/0077/0270/8279/products/black_b1b1f48f-244c-4b81-ab8b-0391e678a2a0_2048x.jpg?v=1564276363"
-            alt="" width="30" height="24" class="d-inline-block align-text-top"> UWB</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<!--The "onload" part, without it my array is not working, I do not know why. But when I add it everything is fine-->
+<body onload="onLoad()">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="Assigment 3.html"><img
+                src="https://cdn.shopify.com/s/files/1/0077/0270/8279/products/black_b1b1f48f-244c-4b81-ab8b-0391e678a2a0_2048x.jpg?v=1564276363"
+                alt="" width="30" height="24" class="d-inline-block align-text-top"> UWB</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="Assigment 3.html">Home <span class="sr-only">+</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Assigment 3 Noura Page.html">Noura</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Assigment 3 Drake Page.html">Drake</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Assigment 3 Max Page.html">Max</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Assigment 3 Helenie Page.html">Helenie</a>
-            </li>
-        </ul>
-        <!--This is the search bar-->
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-    </div>
-</nav>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="Assigment 3.html">Home <span class="sr-only">+</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Assigment 3 Noura Page.html">Noura</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Assigment 3 Drake Page.html">Drake</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Assigment 3 Max Page.html">Max</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Assigment 3 Helenie Page.html">Helenie</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
 
-<body>
     <p align="center">
         <img src="https://competition.adesignaward.com/designs/675344010f5d1de10401b1f789db9d867aec749d-thumb-big.jpg"
             alt="Art Logo" style="width:5%">
     </p>
 
     <h1>Max Capcanari</h1>
-
-    <!--_________________________________________________________________________________________________________-->
-    <!-- This is our span to edit this section in our future assignments-->
     <h3>MY FACE WHEN IT SNOWS IN APRIL</h3>
-    <!--Noura: using class="img-container"to specify above in the sylesheet, will make it more visisble when you hover over it-->
-    <!--Mark's comment: Nice effect, but actually I think it would be better if you applied it to the img element instead of the div element so that you have to mouse-over the images rather than the sections.-->
     <div class="img-container">
         <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F10play.com.au%2Fip%2Fs3%2F2020%2F10%2F01%2Fde9c81f02dfdf28ea0597cf2e4c7bcf2-996477.jpg%3Fio%3Dportrait&f=1&nofb=1"
             alt="The sketch of someone screaming" style="width:50%">
     </div>
     <br>
     <h3> <a>About the Artist</a></h3>
-    <!--this is a list with bullet points-->
+
     <ul>
         <li><strong>Name:</strong> Max Capcanari</li>
         <li><strong>Age when this was painted:</strong> 20 years old</li>
     </ul>
-    <!--Noura: defining different types of paragraphs using the class="" atribute-->
-    <!--Noura: using style="" attribute within another HTML tag to specify a specific style within the other one-->
+
     <div class="showhidden">
         <p>Hover over this text to find out the inspiration behind this painting!</p>
         <p class="defaulthidden"><span style="color:rgb(51, 157, 206)">"I was inspired to draw this painting, when I was
@@ -225,30 +237,33 @@
     <div>If you want to learn more about this self-portrait, you can take a look <a
             href="http://www.safran-arts.com/42day/art/art4mar/vangogh/self9.html">here!</a></div>
     <div>
-        <button type="button" onclick="rateimage()">Click here to give this painting a rating</button>
-        <p id="demo"></p>
+        <button type="button" id="demo" onclick="rateimage()">Click here to give this painting a rating</button>
     </div>
-    <!--this is a line break after the text above-->
+
     <br>
-    <!--This is a table to display some more information-->
+
     <h3>More about the Artist</h3>
     <table border="1" width="500">
-        <!--the rows are equally split to three sections, hence the 33% I think-->
-        <!--Mark's comment: yes-->
         <tr>
             <td width="33%">Artist "real" Name</td>
             <td width="33%">Artist Age</td>
             <td width="33%">Number of paintings</td>
         </tr>
         <tr>
-            <td width="33%">Max Capcanari</td>
-            <td width="33%">19 years old</td>
-            <td width="33%">1.546 total</td>
+            <td width="33%">
+                <p id="tablename"></p>
+            </td>
+            <td width="33%">
+                <p id="tableAge"></p>
+            </td>
+            <td width="33%">
+                <p id="tablenumber"></p>
+            </td>
         </tr>
     </table>
     <hr>
 
-    <!--Noura: I added this alert sign so the reader knows they've successfully read this page-->
+
     <div class="alert alert-primary" role="alert">
         <strong>Well done!</strong> You successfully read about Max's artwork. Make sure you check out our other
         atists!!
