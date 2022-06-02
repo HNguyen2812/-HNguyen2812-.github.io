@@ -89,7 +89,7 @@
         }
 
         .hover{
-            transform: scale(2);
+            transform: scale(1.5);
         }
 
         /*Max: a specific tag like <a> say, you want all <a> tags to be styled in a particular way */
@@ -118,7 +118,7 @@
             border: 5px solid rgb(147, 148, 104);
         }
 
-        /*Max:Characteristics for cantainer. This has to be placed before setting the grid or it will not work.*/
+        /*Max:Characteristics for cantainer. This has to be placed before setting the grid or it will not work.
         .container {
             width: 200%;
             padding-right: 15px;
@@ -131,7 +131,7 @@
             padding-bottom: 20px;
             border-radius: 20px;
             border: 3px solid #857c6e;
-        }
+        }*/
 
         /*Max: Characteristics for colums. I am still not sure what flex-basis and flex-grow does.*/
         .col {
@@ -165,6 +165,44 @@
             padding-left: 20px;
             align-self: center;
         }
+
+/* Noura: I added this for the js assignment. This is for the typed js*/
+.container {
+  height: 100px;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  
+}
+.container p {
+  font-size: 3rem;
+  padding: 0.5rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  text-align: center;
+  overflow: hidden;
+}
+.container p span.typed-text {
+  font-weight: normal;
+  color: #dd7732;
+}
+.container p span.cursor {
+  display: inline-block;
+  background-color: #ccc;
+  margin-left: 0.1rem;
+  width: 3px;
+  animation: blink 1s infinite;
+}
+.container p span.cursor.typing {
+  animation: none;
+}
+@keyframes blink {
+  0%  { background-color: #ccc; }
+  49% { background-color: #ccc; }
+  50% { background-color: transparent; }
+  99% { background-color: transparent; }
+  100%  { background-color: #ccc; }
+}
     </style>
 </head>
 <!--This is the Navigation bar up top. This was worked on by Drake-->
@@ -211,15 +249,20 @@
 
     <h1> Noura Abdelkader </h1>
 
+    <!--the typed text will appear here after my name in the color orange-->
+    <div class="container">
+        <h2 style="color: rgb(240, 130, 40);"><span class="typed-text"></span><span class="cursor">&nbsp;</span></h2>
+      </div>
+
     <!--_________________________________________________________________________________________________________-->
     <!-- This is our span to edit this section in our future assignments-->
     <h3>MY SCREAM<span> BECAUSE I CAN'T</span> GO TO MY FRIEND'S HOUSE</h3>
     <!--Noura: using class="img-container"to specify above in the sylesheet, will make it more visisble when you hover over it-->
     <!--Mark's comment: Nice effect, but actually I think it would be better if you applied it to the img element instead of the div element so that you have to mouse-over the images rather than the sections.-->
-    <div class="img-container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg"
-            alt="The sketch of someone screaming" style="width:50%">
-    </div>
+    
+        <img class="img-container" src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg"
+            alt="The sketch of someone screaming" style="width:20%; padding-right: 20px;">
+   
     <br>
     <h3> <a>About the Artist</a></h3>
     <!--this is a list with bullet points-->
@@ -263,6 +306,7 @@
         <h2 style="color: rgb(240, 130, 40);">Artist's best character traits</h2>
     </div>
 
+    <!--this will add the circle at the bottom of the page. I used JS to make it grow (scale: 1.5) when you hover over it with your mouse-->
     <div class="circle" style="text-align: center;">Creative, Talented, and Humble</div>
 
     <hr>
@@ -271,7 +315,8 @@
         <strong>Well done!</strong> You successfully read about Noura's artwork. Make sure you check out our other
         atists!!
     </div>
-<!--JS stuff-->
+
+<!--JS stuff comes inside <script> tags at the end of the document-->
 <script>
 const circle = document.querySelector(".circle")
 
@@ -289,7 +334,48 @@ circle.addEventListener("mouseleave", () => {
     }
 })
 
-img-container
+/*this makes the typing effect (js) */
+const typedTextSpan = document.querySelector(".typed-text");
+const cursorSpan = document.querySelector(".cursor");
+
+const textArray = ["best artist", "talented", "best painter"]; //this is the text that appears/is typed
+const typingDelay = 200;
+const erasingDelay = 100;
+const newTextDelay = 2000; // Delay between current and next text
+let textArrayIndex = 0;
+let charIndex = 0;
+
+function type() {
+  if (charIndex < textArray[textArrayIndex].length) {
+    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+    typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+    charIndex++;
+    setTimeout(type, typingDelay);
+  } 
+  else {
+    cursorSpan.classList.remove("typing");
+  	setTimeout(erase, newTextDelay);
+  }
+}
+
+function erase() {
+	if (charIndex > 0) {
+    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+    typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
+    charIndex--;
+    setTimeout(erase, erasingDelay);
+  } 
+  else {
+    cursorSpan.classList.remove("typing");
+    textArrayIndex++;
+    if(textArrayIndex>=textArray.length) textArrayIndex=0;
+    setTimeout(type, typingDelay + 1100);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function() { // On DOM Load initiate the effect
+  if(textArray.length) setTimeout(type, newTextDelay + 250);
+});
 
 </script>
 
