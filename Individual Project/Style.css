@@ -2,14 +2,28 @@ body{
     background-image: url("https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcGQyMS0xMzItOTQtZXllLmpwZw.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-}.navbar-logo{
+}
+.navbar-brand{
     font-size: larger;
     font-style: italic;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-display:inherit;
+    font-family: fantasy;
+    justify-items: right;
+   
 }
 .card{
-    box-shadow:coral;
-    text-shadow: gray;
-    border-bottom-style: ridge;
+    box-shadow:0 5px 10px rgba(0,0,0,.2);
+    border-radius: 2em;
+    padding: 1.5em .5em .5em;
 }
+h5{
+    font-family: fantasy;
+    font-style:italic;
+    font-size:xx-large;
+    font-weight: bold;
+    color: rgb(218, 76, 76);
+    text-align:unset;
+}
+ul{
+    list-style-type: circle;
+}
+
