@@ -26,4 +26,6 @@ h5{
 ul{
     list-style-type: circle;
 }
-
+carousel{
+    size-adjust:initial;
+}
